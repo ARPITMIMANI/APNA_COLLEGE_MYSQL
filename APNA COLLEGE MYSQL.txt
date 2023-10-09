@@ -1,0 +1,508 @@
+-- CREATE DATABASE temp_db ;
+
+-- DROP DATABASE temp_db;
+
+-- USE temp_db;
+
+/* CREATE TABLE student
+(
+id INT PRIMARY KEY ,
+name VARCHAR(100) ,
+age INT NOT NULL
+); */
+
+/* INSERT INTO student VALUES 
+ (1,"TOM",36) , 
+ (2,"JOE",34) ;  */
+
+-- SELECT * FROM student ;
+
+-- CREATE DATABASE IF NOT EXISTS temp_db ; 
+
+-- DROP DATABASE IF EXISTS new_temp_db ;
+
+-- SHOW DATABASES 
+
+-- SHOW TABLES 
+
+-- DROP TABLE student;
+
+/* CREATE TABLE student
+(
+rollno INT PRIMARY KEY ,
+name VARCHAR(100) 
+); */
+
+/* INSERT INTO student
+( rollno , name )
+VALUES 
+(101,"TOM") ,
+(102,"JOE") ,
+(103,"LEO") ,
+(104,"DAN") ,
+(105,"BOB") ,
+(106,"MAC") ; */
+
+-- SELECT * FROM student;
+
+/* INSERT INTO student
+VALUES 
+(107,"REN") ,
+(108,"KOA") ; */
+
+-- CREATE DATABASE xyz_company ;
+
+-- USE xyz_company ;
+
+/* CREATE TABLE employee
+(
+id INT PRIMARY KEY ,
+name VARCHAR(100) ,
+salary INT
+); */
+
+/* INSERT INTO employee
+VALUES
+( 1 , "ADAM" , 25000 ) ,
+( 2 , "BOB" , 30000 ) ,
+( 3 , "CASEY" , 40000 ) ; */
+
+-- SELECT * FROM employee
+
+/* CREATE TABLE table1 
+( 
+id INT PRIMARY KEY ,
+name VARCHAR(100) ,
+age INT
+) ; */ 
+
+/* CREATE TABLE table2
+( 
+id INT ,
+name VARCHAR(100) ,
+age INT ,
+PRIMARY KEY (id)
+) ; */
+
+/* CREATE TABLE table3
+( 
+id INT UNIQUE ,
+name VARCHAR(100) ,
+age INT ,
+PRIMARY KEY ( id , name )
+) ;  */
+
+-- FOREIGN KEY (cust_id ) REFERENCES customer(id) 
+
+/* CREATE TABLE table4
+( 
+id INT ,
+salary INT DEFAULT 25000
+) ; */
+
+/* INSERT INTO table4 (id) 
+VALUES 
+( 201 ) ,
+( 202 ) ,
+( 203 ) ,
+( 204 ) ; */
+
+-- SELECT * FROM table4 ;
+
+/* CREATE TABLE table5
+( 
+id INT PRIMARY KEY ,
+city VARCHAR(50) ,
+age INT ,
+CONSTRAINT age_city CHECK ( age >= 18 AND city = "DELHI" )
+); */
+
+
+/* CREATE TABLE table6
+( 
+name_id INT PRIMARY KEY ,
+name VARCHAR(100) ,
+age INT CHECK ( age >= 18 )
+); */
+
+-- USE moviesdb;
+
+-- SELECT * FROM movies;
+
+-- SELECT movie_id , title , studio FROM movies ;
+
+-- SELECT DISTINCT studio FROM movies;
+
+-- SELECT * FROM movies WHERE imdb_rating > 7;
+
+-- SELECT * FROM movies WHERE imdb_rating > 7 AND release_year > 2000 ;
+
+-- SELECT * FROM movies WHERE imdb_rating > 8.4 OR release_year > 2010 ;
+
+-- SELECT * FROM movies WHERE imdb_rating + 10 > 18 ; 
+
+-- SELECT * FROM movies WHERE imdb_rating BETWEEN 8 AND 9 ;
+
+-- SELECT * FROM movies WHERE language_id IN ( 5 , 1 , 3 , 7 ) ;
+ 
+-- SELECT * FROM movies WHERE language_id NOT IN ( 5 , 1 , 3 , 7 ) ;
+ 
+-- SELECT * FROM movies WHERE imdb_rating BETWEEN 8 AND 9  LIMIT 10 ;
+ 
+-- SELECT * FROM movies ORDER BY title ASC;
+ 
+-- SELECT * FROM movies ORDER BY imdb_rating DESC LIMIT 10;
+
+/* SELECT
+ROUND ( AVG(imdb_rating) , 3 ) AS avg_imdb_rating ,
+MIN(imdb_rating) AS min_imdb_rating ,
+MAX(imdb_rating) AS max_imdb_rating ,
+SUM(imdb_rating) AS sum_imdb_rating ,
+COUNT(imdb_rating) AS count_imdb_rating 
+FROM movies */
+
+/* SELECT language_id , count(language_id) AS cnt
+FROM movies
+GROUP BY language_id; */
+
+/* SELECT language_id , count(movie_id) AS cnt
+FROM movies
+GROUP BY language_id; */
+
+/* SELECT language_id , industry , count(movie_id) AS cnt
+FROM movies
+GROUP BY language_id , industry ; */
+
+/* SELECT industry , language_id ,count(movie_id) AS cnt
+FROM movies
+GROUP BY industry , language_id ; */
+
+/* SELECT language_id ,count(movie_id) AS cnt
+FROM movies
+GROUP BY language_id 
+ORDER BY cnt ASC; */
+
+/* SELECT studio , COUNT(movie_id)
+FROM movies
+GROUP BY studio
+HAVING MAX(imdb_rating) >= 8; */
+
+-- USE xyz_company;
+
+-- SET SQL_SAFE_UPDATES = 0;
+
+/* UPDATE employee
+SET salary = "36000"
+WHERE name = "ADAM" ; */
+
+-- SELECT * FROM employee;
+
+/* UPDATE employee 
+SET salary = salary + 2000 ; */
+
+-- SELECT * FROM employee;
+
+/* DELETE FROM employee 
+WHERE salary <= 30000; */
+
+-- USE temp_db;
+
+/* CREATE TABLE dept
+(
+id INT PRIMARY KEY ,
+name VARCHAR(100) 
+); */ 
+
+/* CREATE TABLE teacher
+(
+teacher_id INT PRIMARY KEY ,
+name VARCHAR(100) ,
+dept_id INT ,
+FOREIGN KEY (dept_id) REFERENCES dept(id)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+); */
+
+/* INSERT INTO dept
+VALUES 
+( 101 , "ACCOUNTS" ) ,
+( 102 , "MATHS" ) ,
+( 103 , "ENGLISH" ) ,
+( 104 , "HINDI" ) ,
+( 105 , "SCIENCE" ) ,
+( 106 , "ECONOMICS" ) ; */
+
+/* INSERT INTO dept
+VALUES 
+( 101 , "ACCOUNTS" ) ,
+( 102 , "MATHS" ) ,
+( 103 , "ENGLISH" ) ,
+( 104 , "HINDI" ) ,
+( 105 , "SCIENCE" ) ,
+( 106 , "ECONOMICS" ) ; */
+
+-- SELECT * FROM dept;
+
+/* INSERT INTO teacher
+VALUES 
+( 11 , "TOM" , 102 ) ,
+( 12 , "JOE" , 103 ) ,
+( 13 , "LEO" , 104 ) ,
+( 14 , "MAC" , 103 ) ,
+( 15 , "SAM" , 104 ) ,
+( 16 , "ASH" , 102) ; */
+
+-- SELECT * FROM teacher;
+
+/* UPDATE dept
+SET id = 202
+WHERE id = 102; */
+
+/* UPDATE dept
+SET id = 102
+WHERE id = 202; */
+
+-- USE xyz_company ;
+
+-- SELECT * FROM table6;
+
+/* ALTER TABLE table6
+ADD COLUMN gender VARCHAR(10) NOT NULL; */
+
+/* ALTER TABLE table6
+DROP COLUMN gender; */
+
+/* ALTER TABLE table6
+RENAME TO table_six; */
+
+-- SELECT * FROM table_six;
+
+/* ALTER TABLE table5
+MODIFY COLUMN age VARCHAR(4) NOT NULL ; */
+
+/* ALTER TABLE table5 
+CHANGE id emp_id INT; */
+
+-- TRUNCATE TABLE table5;
+
+/* INSERT INTO table1
+VALUES
+( 21 , "TOM" , 32 ) ,
+( 22 , "JOE" , 36 ) ,
+( 23 , "DEN" , 34 ) ,
+( 24 , "LEO" , 38 ) ; */
+
+-- SELECT * FROM table1;
+
+-- TRUNCATE TABLE table1
+
+-- SET SQL_SAFE_UPDATES = 1;
+
+-- USE moviesdb;
+
+-- INNER JOIN
+
+/* SELECT title , release_year , budget , revenue
+FROM movies AS m
+INNER JOIN financials AS f
+ON m.movie_id = f.movie_id; */
+
+-- LEFT JOIN OR LEFT OUTER JOIN
+
+/* SELECT title , release_year , budget , revenue
+FROM movies AS m
+LEFT JOIN financials AS f
+ON m.movie_id = f.movie_id; */
+
+-- RIGHT JOIN OR RIGHT OUTER JOIN
+
+/* SELECT title , release_year , budget , revenue
+FROM movies AS m
+RIGHT JOIN financials AS f
+ON m.movie_id = f.movie_id; */
+
+-- FULL JOIN OR FULL OUTER JOIN
+
+/*  SELECT title , release_year , budget , revenue
+FROM movies AS m
+LEFT JOIN financials AS f
+ON m.movie_id = f.movie_id
+UNION
+SELECT title , release_year , budget , revenue
+FROM movies AS m
+RIGHT JOIN financials AS f
+ON m.movie_id = f.movie_id ; */
+
+-- LEFT EXCUSIVE JOIN
+
+/* SELECT title , release_year , budget , revenue
+FROM movies AS m
+LEFT JOIN financials AS f
+ON m.movie_id = f.movie_id
+WHERE f.movie_id IS NULL; */
+
+-- RIGHT EXCLUSIVE JOIN
+
+/* SELECT title , release_year , budget , revenue
+FROM movies AS m
+RIGHT JOIN financials AS f
+ON m.movie_id = f.movie_id
+WHERE m.movie_id IS NULL; */
+
+-- FULL EXCLUSIVE JOIN
+
+/* SELECT title , release_year , budget , revenue
+FROM movies AS m
+LEFT JOIN financials AS f
+ON m.movie_id = f.movie_id
+WHERE f.movie_id IS NULL
+UNION
+SELECT title , release_year , budget , revenue
+FROM movies AS m
+RIGHT JOIN financials AS f
+ON m.movie_id = f.movie_id
+WHERE m.movie_id IS NULL ; */
+
+-- USE temp_db ;
+
+/* CREATE TABLE employees
+(
+id INT PRIMARY KEY ,
+name VARCHAR(50) ,
+manager_id INT
+); */
+
+/* INSERT INTO employees
+VALUE
+( 101 , "ADAM" , 103) ,
+( 102 , "BOB" , 104 ) ,
+( 103 , "CASEY" , NULL ) ,
+( 104 , "DONALD" , 103 ) ; */
+
+-- SELECT * FROM employees
+
+-- SELF JOIN
+
+/* SELECT 
+a.name AS manager_name , 
+b.name AS employee_name
+FROM employees AS a
+JOIN employees AS b
+ON a.id = b.manager_id ; */
+
+/* SELECT name , id FROM employees
+UNION 
+SELECT name , id FROM employees ; */
+
+/* SELECT name , id FROM employees
+UNION ALL
+SELECT name , id FROM employees ; */
+
+-- USE moviesdb;
+
+/* CREATE VIEW movies_view AS 
+SELECT title , release_year , imdb_rating , studio 
+FROM movies; */
+
+-- SELECT * FROM movies_view;
+
+/* CREATE VIEW new_view AS 
+SELECT title , release_year , imdb_rating , studio 
+FROM movies; */
+
+-- SELECT * FROM new_view;
+
+-- DROP VIEW new_view;
+
+/* SELECT * FROM movies_view
+WHERE imdb_rating >= 8; */
+
+-- USE temp_db;
+
+/* CREATE TABLE students
+(
+rollno INT PRIMARY KEY,
+name VARCHAR(40) ,
+marks INT ,
+city VARCHAR(40)
+); */
+
+/* INSERT INTO students
+VALUES
+( 101 , "ANIL" , 78 , "RAIPUR" ) ,
+( 102 , "BHUMIKA" , 93 , "PATNA" ) ,
+( 103 , "CHETAN" , 85 , "RAIPUR" ) ,
+( 104 , "DHRUV" , 96 , "PATNA" ) ,
+( 105 , "ENAMUEL" , 92 , "RAIPUR" ) ,
+( 106 , "FARAH" , 82 , "PATNA" ) ; */
+
+-- SELECT * FROM students;
+
+-- FIND THE NAME OF STUDENTS WITH EVEN NUMBER ?
+
+/* SELECT rollno , name 
+FROM students
+WHERE rollno % 2 = 0; */
+
+/* SELECT rollno , name
+FROM students
+WHERE rollno IN ( 102 , 104 , 106 ) ; */ 
+ 
+/* SELECT name , rollno
+FROM students
+WHERE rollno IN 
+     ( SELECT rollno
+     FROM students
+	 WHERE rollno % 2 = 0 ) ; */
+     
+-- FIND THE MAXIMUM MARKS FROM THE STUDENTS OF PATNA ?
+
+/* SELECT *
+FROM students
+WHERE city = "PATNA" ; */
+
+/* SELECT MAX(marks)
+FROM 
+      ( SELECT *
+      FROM students
+	  WHERE city = "PATNA" ) 
+      AS temp ; */ 
+      
+/* SELECT MAX(marks) 
+FROM students
+WHERE city = "PATNA"; */
+
+  -- FIND THE MINIMUM MARKS FROM THE STUDENTS OF PATNA ?
+
+/* SELECT *
+FROM students
+WHERE city = "PATNA" ; */
+
+/* SELECT MIN(marks)
+FROM 
+      ( SELECT *
+      FROM students
+	  WHERE city = "PATNA" ) 
+      AS temp ; */ 
+      
+/* SELECT MIN(marks) 
+FROM students
+WHERE city = "PATNA"; */
+ 
+ -- FIND THE AVERAGE MARKS FROM THE STUDENTS OF PATNA ?
+
+/* SELECT *
+FROM students
+WHERE city = "PATNA" ; */
+
+/* SELECT AVG(marks)
+FROM 
+      ( SELECT *
+      FROM students
+	  WHERE city = "PATNA" ) 
+      AS temp ; */ 
+      
+/* SELECT AVG(marks) 
+FROM students
+WHERE city = "PATNA"; */
+
